@@ -3,9 +3,8 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_EventManager
  */
 
 namespace Zend\EventManager;
@@ -21,9 +20,6 @@ use Zend\Stdlib\PriorityQueue;
  *
  * Use the EventManager when you want to create a per-instance notification
  * system for your objects.
- *
- * @category   Zend
- * @package    Zend_EventManager
  */
 class EventManager implements EventManagerInterface
 {
@@ -144,7 +140,7 @@ class EventManager implements EventManagerInterface
      */
     public function setIdentifiers($identifiers)
     {
-        if (is_array($identifiers) || $identifiers instanceof \Traversable) {
+        if (is_array($identifiers) || $identifiers instanceof Traversable) {
             $this->identifiers = array_unique((array) $identifiers);
         } elseif ($identifiers !== null) {
             $this->identifiers = array($identifiers);
@@ -160,7 +156,7 @@ class EventManager implements EventManagerInterface
      */
     public function addIdentifiers($identifiers)
     {
-        if (is_array($identifiers) || $identifiers instanceof \Traversable) {
+        if (is_array($identifiers) || $identifiers instanceof Traversable) {
             $this->identifiers = array_unique($this->identifiers + (array) $identifiers);
         } elseif ($identifiers !== null) {
             $this->identifiers = array_unique(array_merge($this->identifiers, array($identifiers)));
