@@ -35,3 +35,13 @@ div.container a.brand {
     margin-left: 0;
     padding: 8px 20px 12px 40px;
 }
+
+.loading{
+	background: url("../images/loading.gif") no-repeat scroll 0 10px transparent;
+	height: 52px;
+	width: 42px;
+	z-index: 1;
+	position: absolute;
+	top: 25%;
+	left: 50%;
+}

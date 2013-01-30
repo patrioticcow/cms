@@ -3,22 +3,48 @@
 namespace Backend\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
 
     public function indexAction()
     {
-        if($this->zfcUserAuthentication()->hasIdentity()){
+        $this->layout('layout/backend');
 
-        }
         return array();
     }
 
-    public function fooAction()
+    public function aboutAction()
     {
-        // This shows the :controller and :action parameters in default route
-        // are working when you browse to /index/index/foo
-        return array();
+        $request = $this->getRequest();
+        $results = $request->getQuery();
+
+        $result = new ViewModel();
+        $result->setTerminal(true);
+
+        return $result;
+    }
+
+    public function articlesAction()
+    {
+        $request = $this->getRequest();
+        $results = $request->getQuery();
+
+        $result = new ViewModel();
+        $result->setTerminal(true);
+
+        return $result;
+    }
+
+    public function pagesAction()
+    {
+        $request = $this->getRequest();
+        $results = $request->getQuery();
+
+        $result = new ViewModel();
+        $result->setTerminal(true);
+
+        return $result;
     }
 }

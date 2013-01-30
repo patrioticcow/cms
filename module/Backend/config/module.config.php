@@ -24,15 +24,11 @@ return array(
         ),
     ),
     'view_manager' => array(
-        'display_not_found_reason' => true,
-        'display_exceptions'       => true,
-        'doctype'                  => 'HTML5',
-        'template_map' => array(
-                'layout/layout'           => __DIR__ . '/../view/layout/backend.phtml',
-                'application/index/index' => __DIR__ . '/../view/backend/index/index.phtml',
-        ),
         'template_path_stack' => array(
             'backend' => __DIR__ . '/../view',
         ),
+    ),
+    'strategies' => array(
+        'ViewJsonStrategy',
     ),
 );
