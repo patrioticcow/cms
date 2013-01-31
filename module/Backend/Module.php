@@ -12,6 +12,12 @@ namespace Backend;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 
+use Backend\Model\Pages;
+use Backend\Model\PagesTable;
+
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
+
 class Module implements AutoloaderProviderInterface
 {
     public function getAutoloaderConfig()
@@ -40,4 +46,24 @@ class Module implements AutoloaderProviderInterface
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($sm);
     }
+
+    public function getServiceConfig()
+    {
+        return array(
+                'factories' => array(
+                        'Backend\Model\PagesTable' =>  function($sm) {
+                            $tableGateway = $sm->get('PagesTableGateway');
+                            $table = new PagesTable($tableGateway);
+                            return $table;
+                        },
+                        'PagesTableGateway' => function ($sm) {
+                            $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                            $resultSetPrototype = new ResultSet();
+                            $resultSetPrototype->setArrayObjectPrototype(new Pages());
+                            return new TableGateway('pages', $dbAdapter, null, $resultSetPrototype);
+                        },
+                ),
+        );
+    }
+
 }

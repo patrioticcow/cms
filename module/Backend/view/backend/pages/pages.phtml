@@ -1,0 +1,52 @@
+<div>
+    <div class="row-fluid">
+        <div class="span10">
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab1" data-toggle="tab">View All Pages</a>
+                    </li>
+                    <li>
+                        <a href="#tab2" data-toggle="tab">Add Page</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <?php var_dump($pages); ?>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+
+                        <?php
+                        $form = $this->form;
+                        $form->prepare();
+
+                        $form->setAttribute('action', $this->url('backend/addpage'));
+                        $form->setAttribute('method', 'post');
+                        $formLabel = $this->plugin('formLabel');
+
+                        echo $this->form()->openTag($form);
+
+                            $name = $form->get('title');
+                            echo "<label>Page Name</label>";
+                            echo $this->formInput($name);
+                            echo $formLabel->closeTag();
+
+                            $content = $form->get('content');
+                            echo "<label>Page Content</label>";
+                            echo $this->formTextarea($content);
+                            echo $formLabel->closeTag();
+
+                            echo '<br>';
+                            $submit = $form->get('submit');
+                            echo $this->formSubmit($submit);
+
+                        echo $this->form()->closeTag();
+                        ?>
+
+                        * select layout
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

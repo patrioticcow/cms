@@ -9,7 +9,7 @@ class Addpage extends Form
 {
     public function __construct($name = null)
     {
-        parent::__construct('backend');
+        parent::__construct('add_page');
 
         $this->setAttribute('method', 'post');
 
@@ -17,12 +17,8 @@ class Addpage extends Form
                 'name' => 'title',
                 'type' => 'Zend\Form\Element\Text',
                 'attributes' => array(
-                        'class' => 'page_title',
-                        'placeholder' => 'Enter page title',
-                        'required' => 'required',
-                ),
-                'options' => array(
-                        'label' => 'Title',
+                        'class' => 'page_name',
+                        'placeholder' => 'Enter page name',
                 ),
         ));
 
@@ -31,15 +27,28 @@ class Addpage extends Form
                 'type' => 'Zend\Form\Element\Textarea',
                 'attributes' => array(
                         'class' => 'page_content',
-                        'required' => 'required',
-                ),
-                'options' => array(
                 ),
         ));
 
         $this->add(array(
+            'name' => 'page_id',
+            'type' => 'Zend\Form\Element\Hidden',
+        ));
+
+        /*
+        $this->add(array(
                 'name' => 'csrf',
                 'type' => 'Zend\Form\Element\Csrf',
+        ));
+        */
+
+        $this->add(array(
+                'name' => 'submit',
+                'attributes' => array(
+                    'type'  => 'Zend\Form\Element\Submit',
+                    'class' => 'btn',
+                    'value' => 'Save Page',
+                ),
         ));
     }
 }

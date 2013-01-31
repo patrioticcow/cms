@@ -24,30 +24,20 @@ class AddpageValidator implements InputFilterAwareInterface
             $inputFilter = new InputFilter();
             $factory = new InputFactory();
 
+            $inputFilter->add(
+                $factory->createInput([
+                   'name' => 'title',
+                   'required' => true,
+                   'filters' => array(
+                       array('name' => 'StripTags'),
+                       array('name' => 'StringTrim'),
+                   ),
+               ])
+            );
 
-            $inputFilter->add($factory->createInput([
-                    'name' => 'title',
-                    'required' => true,
-                    'filters' => array(
-                            array('name' => 'StripTags'),
-                            array('name' => 'StringTrim'),
-                    ),
-                    'validators' => array(
-                    ),
-                    ]));
-
-            $inputFilter->add($factory->createInput([
-                    'name' => 'content',
-                    'required' => true,
-                    'filters' => array(
-                            array('name' => 'StripTags'),
-                            array('name' => 'StringTrim'),
-                    ),
-                    'validators' => array(
-                    ),
-                    ]));
-
-
+            $this->inputFilter = $inputFilter;
         }
+
+        return $this->inputFilter;
     }
 }
